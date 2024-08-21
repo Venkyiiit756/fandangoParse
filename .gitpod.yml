@@ -1,0 +1,5 @@
+image:
+  file: Dockerfile
+
+tasks:
+  - command: python3 process_theater_data.py
