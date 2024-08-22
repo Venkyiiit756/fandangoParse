@@ -2,7 +2,7 @@ import pandas as pd
 import re
 
 # File path (assuming the file is passed from the Node.js app)
-file_path = 'aug21_2127.txt'
+file_path = 'aug22_1013.txt'
 
 # Read the content of the file
 with open(file_path, 'r') as file:
@@ -35,7 +35,7 @@ for i, match in enumerate(matches, start=1):
 df = pd.DataFrame(data)
 
 # Add a total row for sum of seats and average occupancy
-total_row = {
+total_row = pd.DataFrame([{
     's.no': 'Total',
     'theater id': '',
     'show time': '',
@@ -43,9 +43,10 @@ total_row = {
     'available seats': df['available seats'].astype(int).sum(),
     'booked seats': df['booked seats'].sum(),
     'occupancy': df['occupancy'].mean()
-}
+}])
 
-df = df.append(total_row, ignore_index=True)
+# Use concat instead of append
+df = pd.concat([df, total_row], ignore_index=True)
 
 # Save the DataFrame to an Excel file
 excel_path = 'theater_data.xlsx'
