@@ -1,8 +1,9 @@
 import pandas as pd
 import re
+import datetime
 
 # File path (assuming the file is passed from the Node.js app)
-file_path = 'aug22_1013.txt'
+file_path = 'aug22_1123.txt'
 
 # Read the content of the file
 with open(file_path, 'r') as file:
@@ -49,7 +50,17 @@ total_row = pd.DataFrame([{
 df = pd.concat([df, total_row], ignore_index=True)
 
 # Save the DataFrame to an Excel file
-excel_path = 'theater_data.xlsx'
+# Get the current date and time
+current_datetime = datetime.datetime.now()
+
+# Format the date and time as a string
+timestamp = current_datetime.strftime("%Y%m%d_%H%M%S")
+
+# Create the excel file name with the timestamp as a suffix
+excel_path = f"theater_data_{timestamp}.xlsx"
+
+# Save the DataFrame to an Excel file
 df.to_excel(excel_path, index=False)
 
 print(f"Excel file created at: {excel_path}")
+
