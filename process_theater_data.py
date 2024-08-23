@@ -3,7 +3,7 @@ import re
 import datetime
 
 # File path (assuming the file is passed from the Node.js app)
-file_path = 'aug22_2055.txt'
+file_path = 'aug23_1153.txt'
 
 # Read the content of the file
 with open(file_path, 'r') as file:
